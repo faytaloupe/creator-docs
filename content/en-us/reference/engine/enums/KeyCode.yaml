@@ -149,7 +149,24 @@ items:
     summary: |
       The `/` key.
     value: 47
-    tags: []
+    tags: []local ShiftDown = false
+
+UIS.InputBegan:Connect(function(input, _gameProcessed)
+	
+	if input.KeyCode == Enum.KeyCode.LeftShift and not _gameProcessed then
+		ShiftDown = true
+	end
+end)
+
+UIS.InputEnded:Connect(function(input)
+	if input.KeyCode == Enum.KeyCode.LeftShift then
+		ShiftDown = false
+	end
+	
+	if input.KeyCode == Enum.KeyCode.Seven and ShiftDown then
+		MessageBox:CaptureFocus()
+	end
+end)
     deprecation_message: ''
   - name: Zero
     summary: |
